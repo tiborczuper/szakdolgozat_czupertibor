@@ -74,34 +74,36 @@ def main_menu():
     while True:
         screen.blit(background, (0, 0))
 
-        MENU_MOUSE_POS = pygame.mouse.get_pos()
+        mouse_pos = pygame.mouse.get_pos()
 
-        MENU_TEXT = get_font(50).render("Brain cheeser", True, "#ffcc00")
-        MENU_RECT = MENU_TEXT.get_rect(center=(screen_width/2, 45))
+        menu_text = get_font(50).render("Brain cheeser", True, "#ffcc00")
+        menu_rect = menu_text.get_rect(center=(screen_width/2, 45))
 
-        PLAY_BUTTON = Button(image=pygame.image.load("assets/images/play_BG.png"), pos=(512, 250),
+        play_button = Button(image=pygame.image.load("assets/images/play_BG.png"), pos=(512, 250),
                              text_input="PLAY", font=get_font(75), base_color="#ffcc00", hovering_color="White")
-        OPTIONS_BUTTON = Button(image=pygame.image.load("assets/images/options_BG.png"), pos=(512, 400),
-                                text_input="OPTIONS", font=get_font(75), base_color="#ffcc00", hovering_color="White")
-        QUIT_BUTTON = Button(image=pygame.image.load("assets/images/quit_BG.png"), pos=(512, 550),
+        options_button = Button(image=pygame.image.load("assets/images/options_BG.png"), pos=(512, 400),
+                                text_input="SETTINGS", font=get_font(75), base_color="#ffcc00", hovering_color="White")
+        quit_button = Button(image=pygame.image.load("assets/images/quit_BG.png"), pos=(512, 550),
                              text_input="QUIT", font=get_font(75), base_color="#ffcc00", hovering_color="White")
 
-        screen.blit(MENU_TEXT, MENU_RECT)
+        screen.blit(menu_text, menu_rect)
 
-        for button in [PLAY_BUTTON, OPTIONS_BUTTON, QUIT_BUTTON]:
-            button.changeColor(MENU_MOUSE_POS)
+        #színváltás ha rajta van az egér
+        for button in [play_button, options_button, quit_button]:
+            button.changeColor(mouse_pos)
             button.update(screen)
-        
+
+        #if ág kattintás esetén
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
+                if play_button.checkForInput(mouse_pos):
                     play()
-                if OPTIONS_BUTTON.checkForInput(MENU_MOUSE_POS):
+                if options_button.checkForInput(mouse_pos):
                     options()
-                if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
+                if quit_button.checkForInput(mouse_pos):
                     pygame.quit()
                     sys.exit()
 
