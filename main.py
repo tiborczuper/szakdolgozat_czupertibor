@@ -10,10 +10,10 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Brain Cheeser")
 
 background = pygame.image.load("assets/images/cheese_BG.jpeg")
-menu_music = pygame.mixer.Sound("assets/sound/menu_music.mp3")
+menu_music = pygame.mixer.Sound("assets/sounds/menu_music.mp3")
 
 def get_font(size): # Returns Press-Start-2P in the desired size
-    return pygame.font.Font("../szakdolgozat_czupertibor/assets/font.ttf", size)
+    return pygame.font.Font("assets/fonts/font.ttf", size)
 
 def play():
     menu_music.stop()
